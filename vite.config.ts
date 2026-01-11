@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/interpolation-visualizer/', // リポジトリ名に合わせて変更してください
+  base: '/interpolation_visualizer/', // アンダースコアに修正
 })
