@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# 📈 Interpolation Visualizer (補間法ビジュアライザー)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This Readme is written by AI.
 
-Currently, two official plugins are available:
+数値解析における様々な「補間法（Interpolation Methods）」を、直感的に学び、比較できるインタラクティブなWebアプリケーションです。
+2Dグラフだけでなく、3D空間での補間曲線の挙動も可視化できます。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![img.png](public/img.png)
 
-## React Compiler
+## 🚀 デモ
+**[Live Demo](https://koto-thing.github.io/interpolation_visualizer/)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ 主な機能
 
-## Expanding the ESLint configuration
+*   **多様な補間アルゴリズム**:
+    *   **線形補間 (Linear)**: 最も基本的な点をつなぐ補間。
+    *   **ラグランジュ補間 (Lagrange)**: 全ての点を通る多項式を生成。
+    *   **ニュートン補間 (Newton)**: 差分商を用いた多項式補間。
+    *   **スプライン補間 (Cubic Spline)**: 滑らかで自然な曲線を生成。
+    *   **最近傍補間 (Nearest Neighbor)**: 階段状のグラフ。
+    *   **Catmull-Rom (Hermite)**: 制御しやすく美しい曲線。
+    *   **秋間スプライン (Akima)**: 振動（オーバーシュート）を抑えた安定した曲線。
+    *   **三角関数補間 (Trigonometric)**: 周期的な波形として補間。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **インタラクティブな操作**:
+    *   グラフをクリックして点を追加。
+    *   点をドラッグして移動。
+    *   右クリックで点を削除。
+    *   座標の手動入力（X, Y, Z）。
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+*   **3Dモード搭載**:
+    *   `Three.js` (React Three Fiber) を使用した3次元グラフ表示。
+    *   マウス操作で回転・ズーム・移動が可能。
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+*   **モダンなUI**:
+    *   グラスモーフィズム（すりガラス調）を採用した美しいデザイン。
+    *   レスポンシブ対応。
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ 技術スタック
+
+*   **Frontend Framework**: [React](https://reactjs.org/)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+*   **Build Tool**: [Vite](https://vitejs.dev/)
+*   **3D Graphics**: [Three.js](https://threejs.org/) / [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
+*   **Deploy**: GitHub Pages
+
+## 📦 インストールと実行
+
+```bash
+# リポジトリのクローン
+git clone https://github.com/koto-thing/interpolation_visualizer.git
+
+# ディレクトリ移動
+cd interpolation_visualizer
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 📝 使い方
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1.  **補間法の選択**: 左上のパネルから、表示したいアルゴリズムにチェックを入れます。
+2.  **点の追加**:
+    *   **グラフクリック**: 2Dモードではクリックした位置に点が追加されます。
+    *   **手動入力**: 左パネルのフォームに数値を入力し、「点を追加」を押します。
+    *   **サンプル**: 「サンプル点を追加」ボタンでデモデータをロードできます。
+3.  **操作**:
+    *   **2Dモード**: ホイールで拡大縮小、右ドラッグで移動、左ドラッグで点を移動。
+    *   **3Dモード**: 画面右上の「3D」ボタンで切り替え。マウスドラッグで視点操作。
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📄 License
+
+MIT License
